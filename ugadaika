@@ -1,0 +1,26 @@
+num = 23
+print('Добро пожаловать в числовую угадайку')
+
+def is_valid(number):
+    return number.isdigit() and 1 <= int(number) <= 100
+
+while True:
+    
+    user_num = input('Введите число от 1 до 100 ')
+    while not is_valid(user_num):
+        user_num = input('А может быть все-таки введем целое число от 1 до 100? ')
+    else:
+        user_num = int(user_num)
+    
+    if user_num < num:
+        print('Ваше число меньше загаданного, попробуйте еще разок ')
+        continue
+    elif user_num > num:
+        print('Ваше число больше загаданного, попробуйте еще разок ')
+        continue
+    else:
+        break
+
+            
+print('Вы угадали, поздравляем!')
+print('Спасибо, что играли в числовую угадайку. Еще увидимся...')
