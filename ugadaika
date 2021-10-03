@@ -1,26 +1,35 @@
-num = 23
 print('Добро пожаловать в числовую угадайку')
+rng = int(input('От 1 до какого числа загадывать? '))
 
 def is_valid(number):
     return number.isdigit() and 1 <= int(number) <= 100
 
-while True:
+def guess(rng):
+    from random import randrange
+    num = randrange(1,rng)
+    count = 1
+    while True:
     
-    user_num = input('Введите число от 1 до 100 ')
-    while not is_valid(user_num):
-        user_num = input('А может быть все-таки введем целое число от 1 до 100? ')
-    else:
-        user_num = int(user_num)
+        user_num = input('Введите число от 1 до 100 ')
+        while not is_valid(user_num):
+            user_num = input('А может быть все-таки введем целое число от 1 до 100? ')
+        else:
+            user_num = int(user_num)
     
-    if user_num < num:
-        print('Ваше число меньше загаданного, попробуйте еще разок ')
-        continue
-    elif user_num > num:
-        print('Ваше число больше загаданного, попробуйте еще разок ')
-        continue
-    else:
-        break
-
-            
-print('Вы угадали, поздравляем!')
-print('Спасибо, что играли в числовую угадайку. Еще увидимся...')
+        if user_num < num:
+            print('Ваше число меньше загаданного, попробуйте еще разок ')
+            count += 1
+            continue
+        elif user_num > num:
+            print('Ваше число больше загаданного, попробуйте еще разок ')
+            count += 1
+            continue
+        else:
+            break
+       
+    print(f'Вы угадали c {count} попытки, поздравляем!')
+    print('Спасибо, что играли в числовую угадайку.')
+    again = input('Хотите повторить? Y/N ')
+    guess(rng) if again.lower() == 'y' else print('Прощавайте!')
+    
+guess(rng)
