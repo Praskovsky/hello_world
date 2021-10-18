@@ -1,0 +1,39 @@
+from random import choice
+
+def generate_password(length, symbols):
+    password = ''
+    for _ in range(length):
+        password += choice(symbols)
+    return password
+
+digits = '0123456789'
+lowercase_letters = 'abcdefghijklmnopqrstuvwxyz'
+uppercase_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+punctuation = '!#$%&*+-=?@^_'
+chars = ''
+
+psw_amount = int(input('Сколько паролей создать? '))
+psw_length = int(input('Какой длинны каждый пароль? '))
+psw_numbers = input('Включать ли цифры 0123456789? y/n')
+psw_uppercase = input('Включать ли заглавные буквы ABCDEFGHIJKLMNOPQRSTUVWXYZ? y/n')
+psw_lowcase = input('Включать ли строчные буквы abcdefghijklmnopqrstuvwxyz? y/n')
+psw_symbols = input('Включать ли символы !#$%&*+-=?@^_? y/n')
+psw_exceptions = input('Исключать ли неоднозначные символы Iil1Lo0O? y/n')
+
+if psw_numbers == 'y':
+    chars += digits
+if psw_uppercase == 'y':
+    chars += uppercase_letters
+if psw_lowcase == 'y':
+    chars += lowercase_letters
+if psw_symbols == 'y':
+    chars += punctuation
+if psw_exceptions == 'n':
+    chars += 'Iil1Lo0O'
+if chars == '':
+    print('Дурак чтоле?')
+
+for _ in range(psw_amount):
+    if chars == '':
+        break
+    print(generate_password(psw_length, chars))
